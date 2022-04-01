@@ -7,24 +7,58 @@ struct samkutxedi{
     double a;
     double b;
     double c;
-
     double angle (int n=0){
-        if(!isTriangle())  return -1;
+        if(!isTriangle())
+            return -1;
         switch (n){
             case 0:
                 return acos((b*b+c*c-a*a)/(2*b*c) );
             case 1:
                 return acos((b*b+a*a-c*c)/(2*b*a));
             default:
-                return acos ((a*a+c*c-b*b)/(2*a*c));
+                return acos((a*a+c*c-b*b)/(2*a*c));
         }
     }
-    void input() {
+    void input(){
+        cout<<"Choose known triangle sides or angles: \n";
+        cout<<"1) 2 sides and 1 angle.\n";
+        cout<<"2) 1 side and 2 angles.\n";
+        cout<<"3) All 3 triangle sides.\n";
+        cout<<"Enter 1, 2 or 3: ";
+        int n; cin>>n;
+        switch (n) {
+            case 1:
+                break;
+            case 2:
+                cout << "Enter the side size: ";
+
+        }
         do{
             cout<<"a="; cin>>a; a=fabs(a);
             cout<<"b="; cin>>b; b=fabs(b);
             cout<<"c="; cin>>c; c=fabs(c);
         }while(!isTriangle());
+    }
+    void oriGverdi(){
+        double Alpha;
+        cout<<"Enter a and b sides: ";
+        cin>>a>>b;
+        cout << "Enter the angle size in radians: ";
+        cin >> Alpha;
+        char oppositeside = 'a';
+        cout << "Which is the opposite side of the angle ";
+        do {
+            cout << "type a, b or c: ";
+            cin >> oppositeside;
+        }while(oppositeside!='a' || oppositeside!='b' || oppositeside!='c');
+        if (oppositeside == 'a') {
+            double Beta = asin((b * sin(Alpha)) / a);
+            double Gamma = M_PI - Alpha - Beta;
+            c = (b * sin(Gamma) / sin(Alpha));
+        }
+        if(oppositeside== 'b'){
+
+        }
     }
     double P(){
         return (a+b+c)/2;
