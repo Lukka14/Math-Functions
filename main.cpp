@@ -6,10 +6,11 @@ struct samkutxedi{
     double a;
     double b;
     double c;
-
+    
     double Alpha;
     double Beta;
     double Gamma;
+    
     void oriGverdi(){
         double kutxe;
         cout<<"შეიყვანეთ a და b გვერდები: ";
@@ -26,7 +27,7 @@ struct samkutxedi{
              Alpha=kutxe;
              Beta = asin((b * sin(Alpha)) / a);
              Gamma = M_PI - Alpha - Beta;
-            c = (a * sin(Gamma) / sin(Alpha));
+             c = (a * sin(Gamma) / sin(Alpha));
         }
         if(mopirdapireGverdi == "b"){
              Beta=kutxe;
@@ -40,7 +41,7 @@ struct samkutxedi{
             Alpha = asin((a* sin(Gamma))/c);
             Beta = M_PI - Alpha - Gamma;
         }
-        isTriangle();
+        shemowmeba();
     }
 
     void oriKutxe(){
@@ -74,15 +75,15 @@ struct samkutxedi{
             a=(sin(Alpha)*c)/sin(Gamma);
             b=(sin(Beta)*c)/sin(Gamma);
         }
-        isTriangle();
+        shemowmeba();
     }
 
     void samiGverdi(){
-        cout<<"შეიყვანეთ სამკუთხედის გვერდები: \n";
-            cout<<"a="; cin>>a; a=fabs(a);
-            cout<<"b="; cin>>b; b=fabs(b);
-            cout<<"c="; cin>>c; c=fabs(c);
-            isTriangle();
+        cout<<"შეიყვანეთ a, b და c გვერდები: ";
+            cin>>a; a=fabs(a);
+            cin>>b; b=fabs(b);
+            cin>>c; c=fabs(c);
+        shemowmeba();
             Alpha= acos((b*b+c*c-a*a)/(2*b*c));
             Beta= acos((a*a+c*c-b*b)/(2*a*c));
             Gamma= acos((b*b+a*a-c*c)/(2*a*b));
@@ -110,6 +111,7 @@ struct samkutxedi{
                 break;
         }
     }
+    
     double P(){
         return (a+b+c)/2;
     }
@@ -133,11 +135,9 @@ struct samkutxedi{
         return M_PI*R*R;
     }
 
-
-
-    void isTriangle(){
+    void shemowmeba(){
         double p=P();
-        if (sqrt(p*(p-a)*(p-b)*(p-c))<=0){
+        if ((p*(p-a)*(p-b)*(p-c))<=0){
             cout<<"შეყვანილი ინფორმაცია არასწორია, ასეთი სამკუთხედი არ არსებობს. :(";
             exit(-1);
         }
@@ -164,6 +164,7 @@ struct samkutxedi{
         if(gverdi == "c") {
             return (2*sqrt(b*a*P()*(P()-c)))/(b+a);;
         }
+        return 0;
     }
 
     double damrgvaleba(double tmp=0,int x=10){
@@ -194,10 +195,9 @@ struct samkutxedi{
             <<"S="<<damrgvaleba(S())<<sep
             <<"area="<<damrgvaleba(chaxazulisS())<<sep
             <<"AREA="<<damrgvaleba(shemoxazulisS())<<sep;
-
     }}A;
 
 int main(){
     A.sheyvana();
-    A.gamotana(true);
+    A.gamotana(false);
 }
